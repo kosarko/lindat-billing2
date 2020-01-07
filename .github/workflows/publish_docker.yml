@@ -13,6 +13,7 @@ jobs:
     #  uses: actions/checkout@v2
     
     - name: Get docker tag
+      id: tag
       run: |
         MYTAG=$(echo $GITHUB_REF | sed -e 's#refs/heads/master#latest#' | sed -e 's#refs/pull/\([^/]*\)/.*#\1#')
         echo "MYTAG=$MYTAG"
@@ -24,7 +25,7 @@ jobs:
       run: |
          echo $VAR
       env:
-        VAR: ${{ steps.docker.outputs.DOCKER_TAG }}
+        VAR: ${{ steps.tag.outputs.DOCKER_TAG }}
        
       
 
