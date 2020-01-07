@@ -15,6 +15,7 @@ jobs:
     - name: Get docker tag
       run: |
         MYTAG=$(echo $GITHUB_REF | sed -e 's#refs/heads/master#latest#' | sed -e 's#refs/pull/\([^/]*\)/.*#\1#')
+        echo "MYTAG=$MYTAG"
         echo "::set-output name=DOCKER_TAG::$MYTAG"
       env:
         GITHUB_REF: ${{ github.ref }}
